@@ -1,0 +1,64 @@
+{
+ "movies": [
+  {
+   "name": "The Shawshank Redemption",
+   "url": "https://parsehub.com/sandbox/moviedetails?movie=The%20Shawshank%20Redemption",
+   "IMAX": "06:00 PM",
+   "Ratingf": "9 . 2"
+  },
+  {
+   "name": "Schindler's List",
+   "url": "https://parsehub.com/sandbox/moviedetails?movie=Schindler%27s%20List",
+   "IMAX": "06:15 PM",
+   "Ratingf": "8 . 9"
+  },
+  {
+   "name": "The Godfather",
+   "url": "https://parsehub.com/sandbox/moviedetails?movie=The%20Godfather",
+   "IMAX": "06:30 PM",
+   "Ratingf": "9 . 2"
+  },
+  {
+   "name": "The Godfather: Part II",
+   "url": "https://parsehub.com/sandbox/moviedetails?movie=The%20Godfather:%20Part%20II",
+   "IMAX": "06:45 PM",
+   "Ratingf": "9 . 0"
+  },
+  {
+   "name": "The Dark Knight",
+   "url": "https://parsehub.com/sandbox/moviedetails?movie=The%20Dark%20Knight",
+   "IMAX": "07:00 PM",
+   "Ratingf": "8 . 9"
+  },
+  {
+   "name": "Pulp Fiction",
+   "url": "https://parsehub.com/sandbox/moviedetails?movie=Pulp%20Fiction",
+   "IMAX": "07:15 PM",
+   "Ratingf": "8 . 9"
+  },
+  {
+   "name": "The Good, the Bad and the Ugly",
+   "url": "https://parsehub.com/sandbox/moviedetails?movie=The%20Good,%20the%20Bad%20and%20the%20Ugly",
+   "IMAX": "07:30 PM",
+   "Ratingf": "8 . 9"
+  },
+  {
+   "name": "12 Angry Men",
+   "url": "https://parsehub.com/sandbox/moviedetails?movie=12%20Angry%20Men",
+   "IMAX": "07:45 PM",
+   "Ratingf": "8 . 9"
+  },
+  {
+   "name": "The Lord of the Rings: The Return of the King",
+   "url": "https://parsehub.com/sandbox/moviedetails?movie=The%20Lord%20of%20the%20Rings:%20The%20Return%20of%20the%20King",
+   "IMAX": "08:00 PM",
+   "Ratingf": "8 . 9"
+  },
+  {
+   "name": "Fight Club",
+   "url": "https://parsehub.com/sandbox/moviedetails?movie=Fight%20Club",
+   "IMAX": "08:15 PM",
+   "Ratingf": "8 . 8"
+  }
+ ]
+}

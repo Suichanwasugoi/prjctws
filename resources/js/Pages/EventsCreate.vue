@@ -11,6 +11,12 @@ const form = ref({
     date: ''
 });
 
+const isSidebarOpen = ref(true);
+
+const toggleSidebar = () => {
+  isSidebarOpen.value = !isSidebarOpen.value;
+};
+
 const handleSubmit = () => {
     router.post('/events', form.value);
 };
@@ -18,12 +24,11 @@ const handleSubmit = () => {
 
 <Head title="EventsCreate" />
 
-<!-- EventsCreate.vue -->
 <template>
-    <div class="flex">
-      <Sidebar />
+     <div class="flex">
+      <Sidebar :isSidebarOpen="isSidebarOpen" @toggleSidebar="toggleSidebar" />
     </div>
-    <AuthenticatedLayout>
+    <AuthenticatedLayout :class="{ 'ml-64': isSidebarOpen }" class="flex-grow flex flex-col transition-all duration-300 ease-in-out">
       <div class="py-12">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white shadow-md rounded-lg overflow-hidden">

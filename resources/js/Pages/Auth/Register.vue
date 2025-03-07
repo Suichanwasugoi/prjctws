@@ -11,7 +11,7 @@ const form = useForm({
     email: '',
     password: '',
     password_confirmation: '',
-    secret_key: '', // Add secret_key property to the form object
+    secret_key: '',
 });
 
 const submit = () => {

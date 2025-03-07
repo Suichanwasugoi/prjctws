@@ -1,4 +1,3 @@
-<!-- Users.vue -->
 <script setup>
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
@@ -7,6 +6,12 @@ import Sidebar from './Sidebar.vue';
 import { Head, router } from '@inertiajs/vue3';
 
 const userList = ref([]);
+
+const isSidebarOpen = ref(true);
+
+const toggleSidebar = () => {
+  isSidebarOpen.value = !isSidebarOpen.value;
+};
 
 async function fetchUsers() {
   try {
@@ -42,37 +47,39 @@ onMounted(fetchUsers);
 </script>
 
 <template>
-  <AuthenticatedLayout>
-    <div class="flex">
-      <Sidebar />
+  <div class="flex">
+      <Sidebar :isSidebarOpen="isSidebarOpen" @toggleSidebar="toggleSidebar" />
     </div>
-
+    <AuthenticatedLayout :class="{ 'ml-64': isSidebarOpen }" class="flex-grow flex flex-col transition-all duration-300 ease-in-out">
     <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-          <div class="p-6 text-violet-800">Users List</div>
+          <div class="p-6 text-violet-800 text-4xl font-extrabold tracking-widest">Admin List</div>
           <br/>
           <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200 my-4">
               <thead class="bg-gray-50">
                 <tr>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  <th class="px-6 py-3 text-left  font-bold text-2xl text-gray-700 uppercase tracking-wider">Name</th>
+                  <th class="px-6 py-3 text-left  font-bold text-2xl text-gray-700 uppercase tracking-wider">Email</th>
+                  <th class="px-6 py-3 text-left  font-bold text-2xl text-gray-700 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
                 <tr v-for="user in userList" :key="user.id">
                   <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm font-medium text-gray-900">{{ user.name }}</div>
+                    <div class="text-xl tracking-wider font-medium text-gray-900">{{ user.name }}</div>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-500">{{ user.email }}</div>
+                    <div class="text-xl tracking-widest text-gray-500">{{ user.email }}</div>
                   </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <button @click="editUser(user.id)" class="text-blue-500 hover:underline mr-2">Edit</button>
-                    <button @click="confirmDeleteUser(user.id)" class="text-red-500 hover:underline mr-2">Delete</button>
-                  </td>
+                  <td class="px-10 py-4 whitespace-nowrap text-xl font-medium">
+                    <button @click="editEvent(event.id)" class="text-blue-500 border-2 rounded-sm p-2 mr-2">
+                  <font-awesome-icon :icon="['fas', 'edit']" /></button>
+                  <button @click="deleteEvent(event.id)" class="text-red-500 border-2 rounded-sm p-2">
+                  <font-awesome-icon :icon="['fas', 'trash']" />
+                </button>
+                </td>
                 </tr>
               </tbody>
             </table>

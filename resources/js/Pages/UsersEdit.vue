@@ -6,8 +6,13 @@
   
   const { props } = usePage();
   const form = ref({});
+
+  const isSidebarOpen = ref(true);
+
+  const toggleSidebar = () => {
+    isSidebarOpen.value = !isSidebarOpen.value;
+  };
   
-  // Initialize the form with data from props if available
   onMounted(() => {
       console.log('props:', props);
       if (props.user) {
@@ -21,14 +26,13 @@
       }
   });
   
-  // Handle form submission
   const updateUser = async () => {
       console.log('updateUser called');
       console.log('Form data at submission:', form.value);
   
       try {
-          // Send PUT request to update the user
           const response = await router.put(`/users/${props.user.id}`, form.value);
+          alert('User Updated!');
           if (response.status === 200) {
               router.visit('/users');
           } 
@@ -39,9 +43,9 @@
 
 <template>
     <div class="flex">
-      <Sidebar />
+      <Sidebar :isSidebarOpen="isSidebarOpen" @toggleSidebar="toggleSidebar" />
     </div>
-    <AuthenticatedLayout>
+    <AuthenticatedLayout :class="{ 'ml-64': isSidebarOpen }" class="flex-grow flex flex-col transition-all duration-300 ease-in-out">
       <div class="py-12">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white shadow-md rounded-lg overflow-hidden">

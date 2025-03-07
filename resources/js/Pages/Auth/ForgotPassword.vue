@@ -14,7 +14,6 @@ const form = useForm({
 const submit = async () => {
     try {
         await form.post(route('password.email'));
-        // Show a message after the request is successful
         showMessage();
     } catch (error) {
         console.error(error);
@@ -30,7 +29,7 @@ const goToSecretKeyInput = () => {
 };
 
 const { props } = usePage();
-const status = props.value?.flash?.status || ''; // Safe access with optional chaining and default value
+const status = props.value?.flash?.status || '';
 </script>
 
 <template>

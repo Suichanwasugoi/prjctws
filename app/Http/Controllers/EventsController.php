@@ -16,9 +16,15 @@ class EventsController extends Controller
         $perPage = 4;
         $page = $request->query('page', 1);
 
-        $events = Events::orderBy('date', 'desc')->paginate($perPage, ['*'], 'page', $page);
+        $events = Events::orderBy('date', 'asc')->paginate($perPage, ['*'], 'page', $page);
     
         return response()->json(['events' => $events]);
+    }
+
+
+    public function getEventsForToday() {
+        $today = Carbon::today()->toDateString();
+        return Events::whereDate('date', $today)->get();
     }
 
     public function monthlyStats()
@@ -86,7 +92,6 @@ public function update(Request $request, $id)
             $events->delete();
             return response()->json(['message' => 'Event deleted successfully']);
         } catch (\Exception $e) {
-            // Log the error
             \Log::error("Error deleting event: " . $e->getMessage());
             return response()->json(['error' => 'Event not found'], 404);
         }

@@ -8,7 +8,7 @@ import TextInput from '@/Components/TextInput.vue';
 import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
 
 const { props } = usePage();
-const status = props.value?.flash?.status || ''; // Safe access with optional chaining and default value
+const status = props.value?.flash?.status || '';
 
 defineProps({
     canResetPassword: {

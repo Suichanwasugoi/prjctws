@@ -7,7 +7,13 @@ import Sidebar from './Sidebar.vue';
 const { props } = usePage();
 const form = ref({});
 
-// Initialize the form with data from props if available
+
+const isSidebarOpen = ref(true);
+
+const toggleSidebar = () => {
+  isSidebarOpen.value = !isSidebarOpen.value;
+};
+
 onMounted(() => {
     console.log('props:', props);
     if (props.event) {
@@ -23,7 +29,6 @@ onMounted(() => {
     }
 });
 
-// Handle form submission
 const handleSubmit = async () => {
     console.log('handleSubmit called');
     console.log('Form data at submission:', form.value);
@@ -34,7 +39,6 @@ const handleSubmit = async () => {
     }
 
     try {
-        // Send PUT request to update the event
         const response = await router.put(`/events/${props.event.id}`, form.value);
             if (response.status === 200) {
                 router.visit('/events');
@@ -44,12 +48,11 @@ const handleSubmit = async () => {
 };
 </script>
 
-<!-- EventsEdit.vue -->
 <template>
     <div class="flex">
-      <Sidebar />
+      <Sidebar :isSidebarOpen="isSidebarOpen" @toggleSidebar="toggleSidebar" />
     </div>
-    <AuthenticatedLayout>
+    <AuthenticatedLayout :class="{ 'ml-64': isSidebarOpen }" class="flex-grow flex flex-col transition-all duration-300 ease-in-out">
       <div class="py-12">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white shadow-md rounded-lg overflow-hidden">

@@ -21,24 +21,20 @@ const showingNavigationDropdown = ref(false);
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
                                 <Link :href="route('dashboard')">
-                                    <ApplicationLogo
-                                       
-                                    />
+                                    <ApplicationLogo />
                                 </Link>
                             </div>
-
-                            
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ms-6">
                             <!-- Settings Dropdown -->
-                            <div class="ms-3 relative">
+                            <div class="relative admin-dropdown-container">
                                 <Dropdown align="right" width="48">
                                     <template #trigger>
                                         <span class="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                class="inline-flex items-center px-3 py-2 border border-transparent leading-4 font-bold text-sm rounded-md text-white bg-violet-500 hover:text-white hover:bg-violet-700 focus:outline-none transition ease-in-out duration-150"
+                                                class="admin-button inline-flex items-center px-3 py-2 border border-transparent leading-4 font-bold text-sm rounded-md text-white bg-violet-500 hover:text-white hover:bg-violet-700 focus:outline-none transition ease-in-out duration-150"
                                             >
                                                 {{ $page.props.auth.user.name }}
 
@@ -141,3 +137,29 @@ const showingNavigationDropdown = ref(false);
         </div>
     </div>
 </template>
+
+
+<style scoped>
+.admin-button {
+    font-size: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: fixed;
+    right: 40px;
+    top: 1rem;
+    z-index: 10;
+}
+
+.admin-dropdown-container {
+    position: fixed;
+    right: 40px;
+    top: 2rem; /* Adjust as necessary to align the dropdown below the button */
+    z-index: 9;
+}
+
+.dropdown-content {
+    position: fixed !important;
+    top: 4rem !important; /* Adjust as necessary */
+    right: 40px !important;
+}
+</style>
+

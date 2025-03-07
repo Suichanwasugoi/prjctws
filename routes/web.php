@@ -22,6 +22,7 @@ Route::prefix('api')->group(function () {
     Route::get('/events', [EventsController::class, 'index']);
     Route::get('/events/monthly-stats', [EventsController::class, 'monthlyStats']);
     Route::get('/users', [UsersController::class, 'index']);
+    Route::get('/events-for-today', [EventsController::class, 'getEventsForToday']);
 });
 Route::get('/events', [EventsController::class, 'index'])->name('events.index');
 Route::get('/eventscreate', [EventsController::class, 'create']);
@@ -73,26 +74,19 @@ Route::middleware(['auth'])->group(function () {
         return Inertia::render('Users');
     })->name('users.index');
     
-     // Route for Users Edit Page
      Route::get('/users/{id}/edit', [UsersController::class, 'edit']);
-
-     // Route for Updating Users
      Route::put('/users/{id}', [UsersController::class, 'update']);
- 
-     // Route for Deleting Users
      Route::delete('/users/{id}', [UsersController::class, 'destroy']);
- 
-     // Route for Logging out Users
      Route::post('/users/{id}/logout', [UsersController::class, 'logout']);
  
-     // Route for Users Create Page
-     Route::get('/users/create', function () {
-         return Inertia::render('UsersCreate');
-     });
+
+Route::get('/users/create', function () {
+    return Inertia::render('UsersCreate');
+});
  
-     // Route for Creating Users
-     Route::post('/users', [UsersController::class, 'create']);
- });
+
+Route::post('/users', [UsersController::class, 'create']);
+});
 
 
 
